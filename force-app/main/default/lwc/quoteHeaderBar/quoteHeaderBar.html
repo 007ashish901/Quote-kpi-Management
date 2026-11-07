@@ -1,0 +1,152 @@
+<template>
+      
+    <div class="hidden-flow">
+    <lightning-flow
+        onstatuschange={handleFlowStatusChange}>
+    </lightning-flow>
+</div>
+     
+    <lightning-card>
+     <div class="slds-p-horizontal_medium slds-p-top_medium">
+
+    <div class="slds-grid slds-grid_vertical-align-end">
+
+
+        
+        <template lwc:if={showRecordPicker}>
+    <div class="opportunity-picker-container">
+        <lightning-record-picker
+            label="Opportunity"
+            placeholder="Search Opportunities"
+            value={opportunityId}
+            object-api-name="Opportunity"
+            onchange={handleOpportunityChange}
+            required>
+        </lightning-record-picker>
+    </div>
+</template>
+ 
+        <div class="approval-btn">
+            <lightning-button
+                variant="brand"
+                label="Submit For Approval"
+                title="Submit For Approval"
+                onclick={handleSubmitForApproval}>
+            </lightning-button>
+        </div>
+
+    </div>
+
+  <template lwc:if={opportunityId}>
+    <div class="opportunity-name-section">
+        <span class="opportunity-label">Opportunity :</span>
+        <button
+            class="opportunity-name-link"
+            onclick={handleOpenOpportunity}>
+            {opportunityName}
+        </button>
+    </div>
+</template>
+
+</div>
+
+        </lightning-card> 
+     
+    <lightning-card 
+        title="Dynamic Kpi Workspace"
+        icon-name="standard:quotes">
+
+      
+        <div class="kpi-wrapper slds-m-horizontal_medium slds-p-around_small">
+
+            <div class="kpi-title slds-text-align_center slds-text-title_caps slds-m-bottom_x-small">
+                KPI Telemetry Bar
+            </div>
+
+            <div class="kpi-grid">
+
+                <div class="kpi-column">
+                    <div class="kpi-box">
+                        <div class="kpi-label">TOTAL UNIT PRICE (TUP)</div>
+                        <div class="kpi-value">${totalUnitPrice}</div>
+                    </div>
+                </div>
+
+                <div class="kpi-column">
+                    <div class="kpi-box">
+                        <div class="kpi-label">TOTAL COST PRICE (TCP)</div>
+                        <div class="kpi-value">${totalCostPrice}</div>
+                    </div>
+                </div>
+
+                <div class="kpi-column">
+                    <div class="kpi-box">
+                        <div class="kpi-label">TOTAL NET DISCOUNT</div>
+                        <div class="kpi-value">${totalNetDiscount}</div>
+                    </div>
+                </div>
+
+                <div class="kpi-column">
+                    <div class="kpi-box">
+                        <div class="kpi-label">TOTAL NET PRICE</div>
+                        <div class="kpi-value">${totalNetPrice}</div>
+                    </div>
+                </div>
+
+                <div class="kpi-column">
+                    <div class="kpi-box">
+                        <div class="kpi-label">DISCOUNT</div>
+                        <div class="kpi-value">{discount}%</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+         
+        <div class="discount-breakdown slds-m-around_medium">
+
+            <div class="breakdown-title">
+                TIER GROUPING BY QUANTITY
+            </div>
+
+            <table class="tier-table slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Metric</th>
+                        <th scope="col">Vol Tier 0</th>
+                        <th scope="col">Vol Tier 1</th>
+                        <th scope="col">Vol Tier 2</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <th scope="row">QUANTITY</th>
+                        <td>{tier0Count}</td>
+                        <td>{tier1Count}</td>
+                        <td>{tier2Count}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        
+        <c-quote-line-editer
+            onrecalculate={handleRecalculate}
+            onsubmit={handleSubmit}>
+        </c-quote-line-editer>
+
+         
+        <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+            <lightning-button
+                variant="neutral"
+                label="Discard Changes"
+                title="Discard Changes"
+                onclick={handleDiscard}>
+            </lightning-button>
+        </div>
+      
+    </lightning-card>
+     
+</template>

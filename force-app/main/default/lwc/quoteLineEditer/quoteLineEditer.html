@@ -1,0 +1,187 @@
+<template>
+  <lightning-card title="Quote Workspace" icon-name="standard:quotes">
+    <div class="slds-text-align_center slds-text-heading_medium slds-text-title_bold">
+    <lightning-formatted-rich-text
+        value={lineCount}>
+    </lightning-formatted-rich-text>
+</div>
+   <div class="slds-p-horizontal_medium">
+    <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+
+         
+        <div>
+            <lightning-button
+                variant="brand"
+                label="ADD PRODUCTS +"
+                title="Add products"
+                onclick={handleClick}>
+            </lightning-button>
+
+            <lightning-button
+                variant="neutral"
+                label="RECALCULATE"
+                title="Recalculate Quote"
+                onclick={handleRecalculate}
+                class="slds-m-left_small">
+            </lightning-button>
+        </div>
+
+        
+        <div>
+            <lightning-button
+                variant="neutral"
+                label="Save Draft"
+                title="Submit Quote"
+                onclick={handleSubmit}>
+            </lightning-button>
+        </div>
+
+    </div>
+
+     
+</div>
+      <div class="slds-grid slds-gutters slds-m-bottom_small">
+        <div class="slds-col slds-size_1-of-2">
+          <div class={comboClass} role="combobox">
+            <div lwc:if={showProducts} class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right">
+              <input type="text" class="slds-input slds-combobox__input"
+                     placeholder="Search products..." oninput={handleSearch} />
+              <lightning-icon icon-name="utility:search" size="x-small"
+                  class="slds-input__icon slds-input__icon_right"></lightning-icon>
+            </div>
+            <div lwc:if={showProducts} class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid " role="listbox">
+              <ul class="slds-listbox slds-listbox_vertical">
+                <template for:each={allNamesProduct} for:item="p">
+                  <li key={p.Id} class="slds-listbox__item">
+                    <div class="slds-listbox__option slds-listbox__option_plain"
+                         role="option" data-id={p.Id} onclick={handleSelect}>
+                      {p.Name}  
+                    </div>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+       
+      
+<div class="slds-scrollable_x">
+    <table class="product-table slds-table slds-table_bordered">
+    
+<thead>
+    <tr class="slds-line-height_reset">
+        <th>#</th>
+        <th>Product Name</th>
+        <th>Unit Price</th>
+        <th>Cost Price</th>
+        <th>Discount Per Product</th>
+        
+        <th>Qty</th>
+        <th>Discount %</th>
+        <th>Applied Tier</th>
+        <th>Total Discount</th>
+        <th>Net Price</th>
+        <th>Remove</th>
+    </tr>
+</thead>
+
+<tbody>
+    <template for:each={lines} for:item="line">
+        <tr key={line.productId}>
+            <td>{line.rowNum}</td>
+            <td>{line.name}</td>
+            <td>
+            <lightning-formatted-number
+                value={line.unitPrice}
+                format-style="currency"
+                currency-code="USD"
+                maximum-fraction-digits="2">
+            </lightning-formatted-number>
+        </td>
+            <td>
+            <lightning-formatted-number
+                value={line.costPrice}
+                format-style="currency"
+                currency-code="USD"
+                maximum-fraction-digits="2">
+            </lightning-formatted-number>
+        </td>
+            <td>
+            <lightning-formatted-number
+                value={line.discountPerProduct}
+                format-style="currency"
+                currency-code="USD"
+                maximum-fraction-digits="2">
+            </lightning-formatted-number>
+        </td>
+            
+
+             
+            <td>
+                <lightning-input
+                    type="number"
+                    variant="label-hidden"
+                    data-id={line.productId}
+                    data-field="qty"
+                    value={line.qty}
+                    min="1"
+                    required
+                    onchange={handleQtyChange}>
+                </lightning-input>
+            </td>
+
+            
+            <td>
+              <lightning-input
+                type="number"
+                variant="label-hidden"
+                data-id={line.productId}
+                data-field="discount"
+                value={line.discount}
+                min="0"
+                max="100"
+                step="any"
+                required
+                onchange={handleDisChange}>
+              </lightning-input>
+            </td>
+
+            <td>{line.tier}</td>
+            <td>
+            <lightning-formatted-number
+                value={line.totalDiscount}
+                format-style="currency"
+                currency-code="USD"
+                maximum-fraction-digits="2">
+            </lightning-formatted-number>
+        </td>
+            <td>
+                <lightning-formatted-number
+                    value={line.netTotal}
+                    format-style="currency"
+                    currency-code="USD"
+                    maximum-fraction-digits="2">
+                </lightning-formatted-number>
+            </td>
+
+            <td>
+                <lightning-button-icon
+                   icon-name="utility:close" 
+                  alternative-text="Close" 
+                  title="Close" 
+                    data-id={line.productId}
+                    onclick={handleDelete}>
+                </lightning-button-icon>
+            </td>
+        </tr>
+    </template>
+</tbody>
+
+</table>
+ </div>
+    
+    
+  </lightning-card>
+</template>

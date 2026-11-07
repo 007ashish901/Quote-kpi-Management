@@ -1,0 +1,189 @@
+ 
+.kpi-wrapper {
+    width: auto;
+    min-width: 0;
+    box-sizing: border-box;
+    border: 2px solid #1b3a6b;
+    border-radius: 0.5rem;
+    background: #fff;
+    
+}
+
+.kpi-title {
+    letter-spacing: 0.05rem;
+}
+
+ 
+.kpi-wrapper .kpi-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    gap: 0.5rem;
+    box-sizing: border-box;
+}
+
+.kpi-wrapper .kpi-column {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ 
+.kpi-box {
+    width: 100%;
+    min-width: 0;
+    min-height: 100px;
+    height: 100%;
+    box-sizing: border-box;
+    background: #eaf2fb;
+    border: 1px solid #c9d6e6;
+    border-radius: 0.5rem;
+    padding: 0.75rem 0.25rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.kpi-label {
+    font-size: 0.7rem;
+    color: #444;
+    overflow-wrap: anywhere;
+}
+
+.kpi-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #3e3e3c;
+    overflow-wrap: anywhere;
+}
+
+.kpi-health {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+.kpi-green {
+    color: #2e844a;
+}
+
+.kpi-amber {
+    color: #b86e00;
+}
+
+.kpi-red {
+    color: #ba0517;
+}
+
+ 
+.breakdown-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #444;
+    margin-bottom: 0.25rem;
+}
+
+.tier-table {
+    width: 100%;
+}
+
+.tier-table .tier-count {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1b3a6b;
+}
+
+ 
+@media (max-width: 768px) {
+    .kpi-wrapper .kpi-grid {
+        flex-wrap: wrap;
+    }
+
+    .kpi-wrapper .kpi-column {
+        flex: 1 1 calc(50% - 0.5rem);
+        max-width: calc(50% - 0.25rem);
+    }
+}
+
+ 
+@media (max-width: 480px) {
+    .kpi-wrapper .kpi-column {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+.approval-btn {
+    margin-left: auto;
+    flex: 0 0 auto;
+}
+
+.approval-btn lightning-button button {
+    white-space: nowrap;
+    line-height: normal;
+    height: 2rem;
+    padding: 0 1rem;
+}
+
+
+ 
+.opportunity-picker-container {
+    flex: 0 1 70%;
+    max-width: 420px;
+    min-width: 250px;
+}
+
+ 
+ 
+.opportunity-picker-container {
+    flex: 0 0 320px;
+    width: 320px;
+    max-width: 320px;
+    min-width: 0;
+}
+
+.opportunity-picker-container lightning-record-picker {
+    display: block;
+    width: 100%;
+}
+
+ 
+.opportunity-name-section {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 12px;
+    margin-bottom: 16px;
+}
+
+.opportunity-label {
+    font-size: 17px;
+    font-weight: 700;
+    color: #444;
+}
+
+button.opportunity-name-link {
+    all: unset;
+    color: #0176d3;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+button.opportunity-name-link:hover {
+    text-decoration: underline;
+}
+
+button.opportunity-name-link:focus {
+    outline: none;
+}
+
+.hidden-flow {
+    display: none;
+}

@@ -1,0 +1,13 @@
+.product-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.product-table th,
+.product-table td {
+    padding: 4px 3px;
+    font-size: 11px;
+    text-align: center;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+}
